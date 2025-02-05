@@ -10,7 +10,7 @@ public class JumpOverGoomba : MonoBehaviour
     private bool onGroundState;
 
     [System.NonSerialized]
-    public int score = 0; // we don't want this to show up in the inspector
+    // public int score = 0; // we don't want this to show up in the inspector
 
     private bool countScoreState = false;
     public Vector3 boxSize;
@@ -49,10 +49,10 @@ public class JumpOverGoomba : MonoBehaviour
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
                 countScoreState = false;
-                score++;
+
+
                 SharedData.Instance.IncrementScore(1);
 
-                Debug.Log(score);
             }
         }
     }
@@ -67,12 +67,12 @@ public class JumpOverGoomba : MonoBehaviour
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
         {
-            Debug.Log("on ground");
+            // Debug.Log("on ground");
             return true;
         }
         else
         {
-            Debug.Log("not on ground");
+            // Debug.Log("not on ground");
             return false;
         }
     }

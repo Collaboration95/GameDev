@@ -27,21 +27,24 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
 
 
+
+
     }
 
     public void RestartButtonCallback(int input)
     {
-        if (input == 1)
-        {
-            Debug.Log("Restart called GameOver");
-        }
-        else if (input == 0)
-        {
-            Debug.Log("Restart called from game");
-        }
+        // if (input == 1)
+        // {
+        //     Debug.Log("Restart called GameOver");
+        // }
+        // else if (input == 0)
+        // {
+        //     Debug.Log("Restart called from game");
+        // }
 
         // reset everything
         ResetGame();
+
         // resume time
         Time.timeScale = 1.0f;
     }
@@ -60,11 +63,15 @@ public class PlayerMovement : MonoBehaviour
         foreach (Transform eachChild in enemies.transform)
         {
             eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
-            Debug.Log("Start positon of enemy is" + eachChild.transform.localPosition);
+            // Debug.Log("Start positon of enemy is" + eachChild.transform.localPosition);
         }
+
+        //Resetting scores
+        SharedData.Instance.ResetScore();
 
         // remove GameOverScreen
         GameOverScript.HideGameOverScreen();
+
 
     }
 
@@ -103,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Collided with goomba! , Need to restart game here!");
+            // Debug.Log("Collided with goomba! , Need to restart game here!");
 
             Time.timeScale = 0.0f;
 
