@@ -94,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
         //Resetting scores
         SharedData.Instance.ResetScore();
 
+
+        Debug.Log("GameOverScreenIsCalled");
         // remove GameOverScreen
         GameOverScript.HideGameOverScreen();
 

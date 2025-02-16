@@ -8,15 +8,19 @@ using TMPro;
 public class GameOverScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject ScoreScreen;
+    public GameObject gameOverScreen;
     public TextMeshProUGUI pointsText;
     public void Setup(int score)
     {
-        gameObject.SetActive(true);
+        gameOverScreen.SetActive(true);
+        ScoreScreen.SetActive(false);
         pointsText.text = "Score: " + score.ToString();
     }
 
     public void HideGameOverScreen()
     {
-        gameObject.SetActive(false);
+        gameOverScreen.SetActive(false);
+        ScoreScreen.SetActive(true);
     }
 }
