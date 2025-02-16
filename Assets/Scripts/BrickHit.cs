@@ -13,26 +13,22 @@ public class BrickHit : MonoBehaviour
     private void Start()
     {
         hasCoin = Random.value < 0.5f;
+
     }
 
     [Header("Block Settings")]
-    [SerializeField] private Sprite usedSprite;       // The sprite after being hit.
-    public Animator BlockAnimator;                      // Animator for the block (if any).
+
+    public Animator BlockAnimator;
 
     [Header("Coin Settings")]
-    [SerializeField] private GameObject coinPrefab;     // Coin prefab to spawn.
-    [SerializeField] private float coinMoveDistance = 1.0f; // How high the coin moves upward.
-    [SerializeField] private float coinMoveSpeed = 4.0f;    // Speed of coin movement.
-    [SerializeField] private AudioClip coinSound;         // Sound effect when coin spawns.
-    [SerializeField] private Vector3 coinSpawnOffset = new Vector3(0, 0.0f, 0); // Offset relative to block position.
+    [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private float coinMoveDistance = 1.0f;
+    [SerializeField] private float coinMoveSpeed = 4.0f;
+    [SerializeField] private Vector3 coinSpawnOffset = new Vector3(0, 0.0f, 0);
 
     // Cached reference to the SpriteRenderer.
     private SpriteRenderer spriteRenderer;
 
-    // Cached original position of the block (for other use if needed).
-    private Vector3 originalPosition;
-
-    // Audio source to play the coin sound.
     public AudioSource audioSource;
 
     private void Awake()
@@ -44,11 +40,6 @@ public class BrickHit : MonoBehaviour
             Debug.LogError("Missing SpriteRenderer on the Question Block!");
         }
 
-        // Store the block's original position.
-        originalPosition = transform.position;
-
-        // Get or add an AudioSource component.
-        // audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -64,21 +55,7 @@ public class BrickHit : MonoBehaviour
             // Process only if this is the first valid hit.
             if (!hasBeenHit)
             {
-                Debug.Log("Block hit for the first time!");
-
-                // Change the sprite to the used block sprite.
-                if (usedSprite != null)
-                {
-                    if (BlockAnimator != null)
-                    {
-                        BlockAnimator.enabled = false;
-                    }
-                    // spriteRenderer.sprite = usedSprite;
-                }
-                else
-                {
-                    Debug.LogWarning("Used sprite is not assigned!");
-                }
+                // Debug.Log("Block hit for the first time!");
 
                 hasBeenHit = true;
 
@@ -90,14 +67,10 @@ public class BrickHit : MonoBehaviour
                     {
                         StartCoroutine(SpawnAndAnimateCoin());
                         collectedCoin = true;
+
                     }
                 }
-
-
-
-
-                // If you want the block to eventually become static, you can start another coroutine
-                // (for example, ReturnToOriginalAndSetStatic) after the coin animation.
+                StartCoroutine(SetStatic());
             }
         }
     }
@@ -136,7 +109,7 @@ public class BrickHit : MonoBehaviour
         Destroy(coin);
     }
 
-    private IEnumerator ReturnToOriginalAndSetStatic()
+    private IEnumerator SetStatic()
     {
 
         // Cache the Rigidbody2D component.
@@ -146,12 +119,10 @@ public class BrickHit : MonoBehaviour
             yield break;
         }
 
-        // Wait until the block's velocity is near zero.
         while (rb.velocity.sqrMagnitude > 0.001f)
         {
             yield return null;
         }
-
         // Set the Rigidbody2D to Static so it no longer moves.
         rb.bodyType = RigidbodyType2D.Static;
 
