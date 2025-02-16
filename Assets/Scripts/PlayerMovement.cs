@@ -136,20 +136,17 @@ public class PlayerMovement : MonoBehaviour
     private bool onGroundState = true;
 
     public GameOverScript GameOverScript;
-
-
-
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") && !onGroundState)
+
+        if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
     }
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") && alive)

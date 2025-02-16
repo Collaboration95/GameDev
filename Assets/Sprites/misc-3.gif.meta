@@ -247,8 +247,8 @@ TextureImporter:
       name: 1-cloud
       rect:
         serializedVersion: 2
-        x: 162
-        y: 1030
+        x: 230
+        y: 696
         width: 32
         height: 24
       alignment: 0
@@ -537,6 +537,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 1-clou
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1029
+        width: 32
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9261e69fa8fb4334bc78c7d41df85c8
+      internalID: -272957620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: moving_platform_6
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1201
+        width: 48
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be1cdde706e14718953ac8d2161b969
+      internalID: 903099312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -548,6 +590,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      1-clou: -272957620
       1-cloud: 573449530
       1-shrub: 583244845
       2-cloud: -947137501
@@ -563,6 +606,7 @@ TextureImporter:
       ground brown: 383091503
       misc-3_0: -1354809198
       misc-3_2: 186944144
+      moving_platform_6: 903099312
       mushroom green: 2054515606
       pipe body: 1935833107
       pipe head: -728801810
