@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @MarioActions : IInputActionCollection2, IDisposable
+public partial class @MarioActions: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
     public @MarioActions()
@@ -137,7 +137,7 @@ public partial class @MarioActions : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Hold(duration=0.4)"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard"",
                     ""action"": ""jumphold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

@@ -115,7 +115,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "Hold(duration=0.4)",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard",
                     "action": "jumphold",
                     "isComposite": false,
                     "isPartOfComposite": false
