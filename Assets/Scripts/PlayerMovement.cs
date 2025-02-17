@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using Unity.VisualScripting;
+
 public class PlayerMovement : MonoBehaviour
 
 {
@@ -19,20 +16,12 @@ public class PlayerMovement : MonoBehaviour
     private bool faceRightState = true;
     public float speed = 10;
     private Rigidbody2D marioBody;
-
-    public TextMeshProUGUI scoreText;
-    public GameObject enemies;
-
-    // Start is called before the first frame update
-
     public Animator marioAnimator;
 
     void Start()
     {
-
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
 
-        // Set to be 30 FPS
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
 
@@ -45,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     void PlayJumpSound()
     {
         marioAudio.PlayOneShot(marioAudio.clip);
-
     }
 
     void GameOverScene()
@@ -60,54 +48,6 @@ public class PlayerMovement : MonoBehaviour
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
     }
 
-    public void RestartButtonCallback(int input)
-    {
-        // if (input == 1)
-        // {
-        //     Debug.Log("Restart called GameOver");
-        // }
-        // else if (input == 0)
-        // {
-        //     Debug.Log("Restart called from game");
-        // }
-
-        // reset everything
-        ResetGame();
-
-        // resume time
-        Time.timeScale = 1.0f;
-    }
-
-    private void ResetGame()
-    {
-        // reset position
-        marioBody.transform.position = new Vector3(-5.879927f, -3.325205f, 0.0f);
-        // reset sprite direction
-        faceRightState = true;
-        marioSprite.flipX = false;
-
-        scoreText.text = "Score: 0";// not present in new thing 
-
-        foreach (Transform eachChild in enemies.transform) // not present in new thing
-        {
-            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
-            // Debug.Log("Start positon of enemy is" + eachChild.transform.localPosition);
-        }
-
-        //Resetting scores
-        SharedData.Instance.ResetScore(); // not present in new thing
-
-        Debug.Log("GameOverScreenIsCalled");
-        // remove GameOverScreen
-        GameOverScript.HideGameOverScreen(); // not present in new thing
-        //reset animation
-        marioAnimator.SetTrigger("gameRestart");
-
-        alive = true;
-
-        // reset camera position
-        gameCamera.position = new Vector3(0, 0, -10);
-    }
     public void GameRestart()
     {
         // reset position
@@ -123,8 +63,6 @@ public class PlayerMovement : MonoBehaviour
         // reset camera position
         gameCamera.position = new Vector3(0, 0, -10);
     }
-
-
 
     void Update()
     {
@@ -161,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
         {
             onGroundState = true;
-            // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
         }
     }
@@ -169,8 +106,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
-            // Debug.Log("Collided with goomba! , Need to restart game here!");
-
             marioAnimator.Play("mario-die");
             marioAudio.PlayOneShot(marioDeath);
             alive = false;
@@ -216,13 +151,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive && onGroundState)
         {
-            // jump
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
             jumpedState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
-
         }
     }
 
@@ -230,10 +163,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive && jumpedState)
         {
-            // jump higher
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
-
         }
     }
 }
