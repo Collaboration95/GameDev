@@ -6,13 +6,13 @@
             "id": "af5f5bb8-571e-495e-b5a6-9f0bf7b57208",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "click",
                     "type": "Button",
                     "id": "d23227c3-2b5d-4a7a-a7b3-6c86d2c24140",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "move",
@@ -40,17 +40,26 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "point",
+                    "type": "Value",
+                    "id": "ac3ffca3-6e7a-477c-96fe-2b4e45482506",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "1bbcd55a-d8d1-4851-93c3-23802918df27",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": ";SuperMarioBros",
+                    "action": "click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -104,7 +113,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": "SuperMarioBros",
                     "action": "jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -115,21 +124,70 @@
                     "path": "<Keyboard>/space",
                     "interactions": "Hold(duration=0.4)",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": "SuperMarioBros",
                     "action": "jumphold",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9efce33-d310-4fd2-a9a7-da5b6e4c3731",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "0e8d1073-fa17-4646-a942-6226301f5bda",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "point",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "a1cca9eb-4ae0-491c-b225-32487a6576e2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "point",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "80317500-10db-47ef-a118-ce5a4b9751a1",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";SuperMarioBros",
+                    "action": "point",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
     ],
     "controlSchemes": [
         {
-            "name": "Keyboard",
-            "bindingGroup": "Keyboard",
+            "name": "SuperMarioBros",
+            "bindingGroup": "SuperMarioBros",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }
