@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 3066116293326726258}
   - component: {fileID: 4749260507473796985}
   m_Layer: 6
-  m_Name: QuestionBlockBounce 1
+  m_Name: BrickCoinParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

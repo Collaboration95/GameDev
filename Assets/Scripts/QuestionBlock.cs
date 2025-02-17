@@ -7,6 +7,7 @@ public class QuestionBlockHit : MonoBehaviour
 {
 
     private bool hasBeenHit = false;
+    GameManager gameManager;
 
     [Header("Block Settings")]
     [SerializeField] private Sprite usedSprite;
@@ -22,6 +23,11 @@ public class QuestionBlockHit : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public AudioSource audioSource;
+
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+    }
 
     private void Awake()
     {
@@ -96,6 +102,7 @@ public class QuestionBlockHit : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         Destroy(coin);
+        gameManager.IncreaseScore(1);
     }
 
     private IEnumerator ReturnToOriginalAndSetStatic()
