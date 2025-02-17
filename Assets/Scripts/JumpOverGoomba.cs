@@ -6,6 +6,8 @@ using TMPro;
 public class JumpOverGoomba : MonoBehaviour
 {
     public Transform enemyLocation;
+
+    GameManager gameManager;
     // public TextMeshProUGUI scoreText;
     private bool onGroundState;
 
@@ -20,13 +22,8 @@ public class JumpOverGoomba : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
     }
-    // void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
-    // }
-
 
     // Update is called once per frame
     void Update()
@@ -50,8 +47,8 @@ public class JumpOverGoomba : MonoBehaviour
             {
                 countScoreState = false;
 
-
-                SharedData.Instance.IncrementScore(1);
+                // SharedData.Instance.IncrementScore(1);
+                gameManager.IncreaseScore(1);
 
             }
         }

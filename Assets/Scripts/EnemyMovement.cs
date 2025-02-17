@@ -36,6 +36,15 @@ public class EnemyMovement : MonoBehaviour
         velocity = new Vector2((moveRight) * maxOffset / enemyPatroltime, 0);
     }
 
+    public void GameRestart()
+    {
+        transform.localPosition = startPosition;
+        originalX = transform.position.x;
+        moveRight = -1;
+        ComputeVelocity();
+    }
+
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // Debug.Log(other.gameObject.name);

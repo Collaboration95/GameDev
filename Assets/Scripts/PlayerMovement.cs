@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 public class PlayerMovement : MonoBehaviour
 
 {
+    GameManager gameManager;
     public AudioSource marioAudio;
     public Transform gameCamera;
     public AudioClip marioDeath;
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
@@ -48,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
     void GameOverScene()
     {
         Time.timeScale = 0.0f;
-        GameOverScript.Setup(SharedData.Instance.score);
+        gameManager.GameOver();
+        Debug.Log("GameOverScene is being called\n");
     }
 
     void PlayDeathImpulse()
@@ -81,24 +85,21 @@ public class PlayerMovement : MonoBehaviour
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
-        // reset score
-        scoreText.text = "Score: 0"; // getting an error here ( during restart , not able to fix this and set timescale to 1.0f)
-                                     // reset 
 
-        foreach (Transform eachChild in enemies.transform)
+        scoreText.text = "Score: 0";// not present in new thing 
+
+        foreach (Transform eachChild in enemies.transform) // not present in new thing
         {
             eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
             // Debug.Log("Start positon of enemy is" + eachChild.transform.localPosition);
         }
 
         //Resetting scores
-        SharedData.Instance.ResetScore();
-
+        SharedData.Instance.ResetScore(); // not present in new thing
 
         Debug.Log("GameOverScreenIsCalled");
         // remove GameOverScreen
-        GameOverScript.HideGameOverScreen();
-
+        GameOverScript.HideGameOverScreen(); // not present in new thing
         //reset animation
         marioAnimator.SetTrigger("gameRestart");
 
@@ -106,31 +107,23 @@ public class PlayerMovement : MonoBehaviour
 
         // reset camera position
         gameCamera.position = new Vector3(0, 0, -10);
+    }
+    public void GameRestart()
+    {
+        // reset position
+        marioBody.transform.position = new Vector3(-5.879927f, -3.325205f, 0.0f);
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
 
+        // reset animation
+        marioAnimator.SetTrigger("gameRestart");
+        alive = true;
+
+        // reset camera position
+        gameCamera.position = new Vector3(0, 0, -10);
     }
 
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown("a") && faceRightState)
-    //     {
-    //         faceRightState = false;
-    //         marioSprite.flipX = true;
-    //         if (marioBody.velocity.x > 0.1f)
-    //             marioAnimator.SetTrigger("onSkid");
-    //     }
-    //     if (Input.GetKeyDown("d") && !faceRightState)
-    //     {
-    //         faceRightState = true;
-    //         marioSprite.flipX = false;
-    //         if (marioBody.velocity.x < -0.1f)
-    //             marioAnimator.SetTrigger("onSkid");
-
-    //     }
-
-    //     marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
-    // }
 
 
     void Update()
@@ -146,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
             marioSprite.flipX = true;
             if (marioBody.velocity.x > 0.05f)
                 marioAnimator.SetTrigger("onSkid");
-
         }
 
         else if (value == 1 && !faceRightState)
@@ -157,9 +149,6 @@ public class PlayerMovement : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
         }
     }
-
-
-    // Fixed update may happen less than once per frame at high framerates and multiple times at lower frame rates
     public float maxSpeed = 20;
     public float upSpeed = 10;
     private bool onGroundState = true;
@@ -237,7 +226,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     public void JumpHold()
     {
         if (alive && jumpedState)
@@ -248,43 +236,4 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
-
-
-
-
-    // void FixedUpdate()
-    // {
-
-    //     if (alive)
-    //     {
-
-    //         float moveHorizontal = Input.GetAxisRaw("Horizontal");
-
-    //         if (Mathf.Abs(moveHorizontal) > 0)
-    //         {
-    //             Vector2 movement = new(moveHorizontal, 0);
-    //             // check if it doesn't go beyond maxSpeed
-    //             if (marioBody.velocity.magnitude < maxSpeed)
-    //                 marioBody.AddForce(movement * speed);
-    //         }
-
-    //         // stop
-    //         if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
-    //         {
-    //             // stop
-    //             marioBody.velocity = Vector2.zero;
-    //         }
-
-    //         if (Input.GetKeyDown("space") && onGroundState)
-    //         {
-    //             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
-    //             onGroundState = false;
-
-    //             marioAnimator.SetBool("onGround", onGroundState);
-    //         }
-
-    //     }
-
-    // }
 }

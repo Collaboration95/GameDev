@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -11,11 +12,19 @@ public class GameOverScript : MonoBehaviour
     public GameObject ScoreScreen;
     public GameObject gameOverScreen;
     public TextMeshProUGUI pointsText;
-    public void Setup(int score)
+    public TextMeshProUGUI ScoreOverlay;
+    private int score;
+    public void DisplayGameOverScreen()
     {
         gameOverScreen.SetActive(true);
         ScoreScreen.SetActive(false);
         pointsText.text = "Score: " + score.ToString();
+    }
+
+    public void SetScore(int incomingScore)
+    {
+        score = incomingScore;
+        ScoreOverlay.text = "Score: " + score.ToString();
     }
 
     public void HideGameOverScreen()
