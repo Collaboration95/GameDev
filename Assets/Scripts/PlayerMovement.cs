@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D marioBody;
     public Animator marioAnimator;
 
+    public AudioSource marioDeathAudio;
+
+
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
@@ -25,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
 
-        // To flip sprite based on Mario's movement
         marioSprite = GetComponent<SpriteRenderer>();
 
         marioAnimator.SetBool("onGround", onGroundState);
@@ -106,9 +109,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && alive)
         {
-            marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
-            alive = false;
+            if (Mathf.Abs(marioBody.velocity.y) > 0)
+            {
+                Debug.Log("Mario kills goomba");
+            }
+            else
+            {
+                marioAnimator.Play("mario-die");
+                marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+                alive = false;
+            }
         }
     }
 

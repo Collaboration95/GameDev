@@ -48,7 +48,9 @@ public class JumpOverGoomba : MonoBehaviour
                 countScoreState = false;
 
                 // SharedData.Instance.IncrementScore(1);
-                gameManager.IncreaseScore(1);
+                // disabling jump over goomba
+                // gameManager.IncreaseScore(1);
+
 
             }
         }
