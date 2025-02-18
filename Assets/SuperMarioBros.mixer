@@ -89,9 +89,13 @@ AudioMixerSnapshotController:
   m_SnapshotID: 582ba407b20884bf0a0eb4320aa463ae
   m_FloatValues:
     7cbdf1e63e13b4c4491a56235435caa3: 0
+    323ed2a810aed4c9b9f4cb301f02635b: -69.60003
+    14c530d86c3f24f35aaf04fa10040c76: 0.9210014
     2f39663962b82431393f9c2832f7c67d: 1000
-    6910828bb4d1b4167aab54892a07f38e: -55.15633
+    71ba4a7957571440d9db73d781484567: 50
+    6910828bb4d1b4167aab54892a07f38e: -80
     885e1e9cc3ac0413c99c37c9258191ab: 2000
+    d33f92efc8ec34c1184932aa81b9c423: -80
   m_TransitionOverrides: {}
 --- !u!244 &-6443847022634932670
 AudioMixerEffectController:
@@ -243,7 +247,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 6910828bb4d1b4167aab54892a07f38e
+    name: ExposedBackgroundMusic
   m_AudioMixerGroupViews:
   - guids:
     - 01a97232037364d7e850490eac7329e3
@@ -257,7 +263,7 @@ AudioMixerController:
     - 5bc0b9053ffb5403e8e95fb74e751048
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -6742431296016587514}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -306,6 +312,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     7cbdf1e63e13b4c4491a56235435caa3: 0
     2f39663962b82431393f9c2832f7c67d: 1000
+    6910828bb4d1b4167aab54892a07f38e: 20
     22eaa30c5d0ce41118ea18381f865e2d: -0.27209902
     885e1e9cc3ac0413c99c37c9258191ab: 2000
   m_TransitionOverrides: {}

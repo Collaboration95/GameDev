@@ -21,6 +21,8 @@ public class EnemyMovement : MonoBehaviour
 
     public Vector3 startPosition = new(-5.879927f, -3.325205f, 0.0f);
 
+    public Animator goombaAnimator;
+
 
     void Start()
     {
@@ -42,6 +44,11 @@ public class EnemyMovement : MonoBehaviour
         originalX = transform.position.x;
         moveRight = -1;
         ComputeVelocity();
+
+        this.enabled = true;  // Re-enable movement script
+        GetComponent<SpriteRenderer>().enabled = true;  // Show 
+        goombaAnimator.SetTrigger("gameRestart");
+        GetComponent<Collider2D>().enabled = true;  // Enable collision
     }
 
 
@@ -68,5 +75,25 @@ public class EnemyMovement : MonoBehaviour
             ComputeVelocity();
             Movegoomba();
         }
+    }
+
+    public void Die()
+    {
+        Debug.Log("A peaceful Goomba was attacked by Mario");
+        this.enabled = false;
+        if (TryGetComponent<Animator>(out Animator animator))
+        {
+            animator.Play("goomba-dead");
+        }
+        StartCoroutine(DeathEffect());
+    }
+
+
+    IEnumerator DeathEffect()
+    {
+        yield return new WaitForSeconds(0.3f); // Wait for animation
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+
     }
 }

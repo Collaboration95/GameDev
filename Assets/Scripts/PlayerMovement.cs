@@ -111,7 +111,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Mathf.Abs(marioBody.velocity.y) > 0)
             {
-                Debug.Log("Mario kills goomba");
+                Debug.Log("Righteous Mario Vanquishes Goomba");
+                gameManager.IncreaseScore(5);
+
+                EnemyMovement temp = other.gameObject.GetComponent<EnemyMovement>();
+                if (temp != null)
+                {
+                    temp.Die();
+                }
             }
             else
             {

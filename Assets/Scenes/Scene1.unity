@@ -2000,6 +2000,9 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: d01a7ff25c4e74ce69a1b9c1ef77b8e8, type: 2}
   normalSnapshotName: MainTheme
   dimmedSnapshotName: GameOver
+  exposedVolumeParam: ExposedBackgroundMusic
+  normalVolume: 0
+  mutedVolume: -80
   transitionTime: 0.5
 --- !u!4 &447940207
 Transform:
