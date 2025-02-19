@@ -2040,7 +2040,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: d01a7ff25c4e74ce69a1b9c1ef77b8e8, type: 2}
   exposedPitchParam: MidAirPitchShiftVariable
   groundPitch: 1
-  airPitch: 0.3
+  airPitch: 0.7
   pitchTransitionSpeed: 2
 --- !u!1 &448200294
 GameObject:
