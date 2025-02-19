@@ -46,29 +46,11 @@ public class QuestionBlockHit : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        // (Assuming that when the player hits from below, the contact normal's Y is greater than 0.5.)
         if (collision.contacts[0].normal.y > 0.5f)
         {
-            // Process only if this is the first valid hit.
             if (!hasBeenHit)
             {
-                // Debug.Log("Block hit for the first time!");
-
-
-                if (usedSprite != null)
-                {
-                    if (BlockAnimator != null)
-                    {
-                        BlockAnimator.enabled = false;
-                    }
-                    spriteRenderer.sprite = usedSprite;
-                }
-                else
-                {
-                    Debug.LogWarning("Used sprite is not assigned!");
-                }
-
+                BlockAnimator.SetBool("Blinking", false);
                 hasBeenHit = true;
 
                 StartCoroutine(ReturnToOriginalAndSetStatic());
@@ -125,5 +107,12 @@ public class QuestionBlockHit : MonoBehaviour
         {
             springJoint.enabled = false;
         }
+    }
+
+    public void gameRestart()
+    {
+        this.hasBeenHit = false;
+        BlockAnimator.SetBool("Blinking", true);
+
     }
 }

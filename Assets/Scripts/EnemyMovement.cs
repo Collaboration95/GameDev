@@ -47,6 +47,7 @@ public class EnemyMovement : MonoBehaviour
 
         this.enabled = true;  // Re-enable movement script
         GetComponent<SpriteRenderer>().enabled = true;  // Show 
+        Debug.Log("EnemyMovement GameRestart");
         goombaAnimator.SetTrigger("gameRestart");
         GetComponent<Collider2D>().enabled = true;  // Enable collision
     }

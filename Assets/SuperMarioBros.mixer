@@ -210,6 +210,28 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-2599397944221856888
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1f7d040d529194053b523640de174c85
+  m_EffectName: Pitch Shifter
+  m_MixLevel: 6bcfb1cb3862643299a57706a277266c
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: b4d6ee3ee60904cf3958c1f368e2e48d
+  - m_ParameterName: FFT size
+    m_GUID: 03e13e274ac9c48c3861a135e6f9a6ac
+  - m_ParameterName: Overlap
+    m_GUID: de17bd0ab42c647a38e82df891659966
+  - m_ParameterName: Max channels
+    m_GUID: 598de99aca8fd4a02bff5af1443b68fd
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-1056924268435303117
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -250,6 +272,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 6910828bb4d1b4167aab54892a07f38e
     name: ExposedBackgroundMusic
+  - guid: 8ea3a175405744166bbbefd44c168e6b
+    name: MidAirPitchShiftVariable
   m_AudioMixerGroupViews:
   - guids:
     - 01a97232037364d7e850490eac7329e3
@@ -263,7 +287,7 @@ AudioMixerController:
     - 5bc0b9053ffb5403e8e95fb74e751048
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -6742431296016587514}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -312,7 +336,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     7cbdf1e63e13b4c4491a56235435caa3: 0
     2f39663962b82431393f9c2832f7c67d: 1000
-    6910828bb4d1b4167aab54892a07f38e: 20
+    6910828bb4d1b4167aab54892a07f38e: -0.0024418721
     22eaa30c5d0ce41118ea18381f865e2d: -0.27209902
     885e1e9cc3ac0413c99c37c9258191ab: 2000
   m_TransitionOverrides: {}
@@ -347,6 +371,7 @@ AudioMixerGroupController:
   - {fileID: -5276424552255180590}
   - {fileID: -8961415335795952525}
   - {fileID: -2672912631726946344}
+  - {fileID: -2599397944221856888}
   m_UserColorIndex: 3
   m_Mute: 0
   m_Solo: 0

@@ -34,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
         marioAnimator.SetBool("onGround", onGroundState);
     }
 
+    public bool IsGrounded()
+    {
+        // exposing mario's state to pitchshifter
+        return onGroundState;
+    }
+
     void PlayJumpSound()
     {
         marioAudio.PlayOneShot(marioAudio.clip);
