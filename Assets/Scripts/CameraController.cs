@@ -26,7 +26,7 @@
 
 using UnityEngine;
 
-public class Follow_player : Singleton<Follow_player>
+public class Follow_player : MonoBehaviour
 {
 
     public Transform player;
@@ -36,9 +36,9 @@ public class Follow_player : Singleton<Follow_player>
     {
         transform.position = player.transform.position + new Vector3(0, 1, -5);
     }
-        override public void Awake()
-    {
-        base.Awake();
+    //     override public void Awake()
+    // {
+    //     base.Awake();
 
-    }
+    // }
 }

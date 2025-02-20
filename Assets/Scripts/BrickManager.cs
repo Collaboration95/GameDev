@@ -1,36 +1,5 @@
 using UnityEngine;
 
-// public class BricksManager : MonoBehaviour
-// {
-//     public void gameRestart()
-//     {
-//         for (int i = 0; i < transform.childCount; i++)
-//         {
-//             Transform child = transform.GetChild(i);
-
-//             // Find the "question block" inside this child
-//             Transform questionBlock = child.Find("question block");
-
-
-//             var brickHit = questionBlock.GetComponent<BrickHit>();
-//             if (brickHit != null)
-//             {
-//                 brickHit.gameRestart();
-//             }
-//             else
-//             {
-//                 var questionBlockHit = questionBlock.GetComponent<QuestionBlockHit>();
-//                 if (questionBlockHit != null)
-//                 {
-//                     questionBlockHit.gameRestart();
-//                 }
-//             }
-
-//         }
-
-//     }
-// }
-
 
 public class BricksManager : MonoBehaviour
 {
