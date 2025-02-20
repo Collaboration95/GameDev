@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class GameOverScript : MonoBehaviour
+public class GameOverScript : Singleton<ActionManager>
 {
     // Start is called before the first frame update
     public GameObject ScoreScreen;

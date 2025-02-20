@@ -16,10 +16,6 @@ public class BrickHit : MonoBehaviour
 
     }
 
-    [Header("Block Settings")]
-
-    public Animator BlockAnimator;
-
     [Header("Coin Settings")]
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private float coinMoveDistance = 1.0f;
@@ -133,5 +129,14 @@ public class BrickHit : MonoBehaviour
         {
             springJoint.enabled = false;
         }
+    }
+
+    public void gameRestart()
+    {
+        hasBeenHit = false;
+        collectedCoin = false;
+        spriteRenderer.enabled = true;
+
+        hasCoin = Random.value < 0.5f;
     }
 }

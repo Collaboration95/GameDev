@@ -853,12 +853,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: castle
+      name: castle-left
       rect:
         serializedVersion: 2
         x: 272
         y: 954
-        width: 80
+        width: 40
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -903,7 +903,7 @@ TextureImporter:
         width: 34
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -911,6 +911,27 @@ TextureImporter:
       bones: []
       spriteID: 5f48d42416ed54725931879bb520c281
       internalID: -1315244326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle-right
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 954
+        width: 40
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29bbece2255c7411087c5d0855bdca8f
+      internalID: 1914358317
       vertices: []
       indices: 
       edges: []
@@ -936,7 +957,8 @@ TextureImporter:
       Big Hill: -1800932130
       QuestionBlock-2: -1734847354
       bricks white top: 1131760199
-      castle: -1453590445
+      castle-left: -1453590445
+      castle-right: 1914358317
       coin light: -172669875
       coin-1: 1297571378
       coin-2: -1532288583

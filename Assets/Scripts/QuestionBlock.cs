@@ -17,7 +17,6 @@ public class QuestionBlockHit : MonoBehaviour
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private float coinMoveDistance = 1.0f;
     [SerializeField] private float coinMoveSpeed = 4.0f;
-    [SerializeField] private AudioClip coinSound;
     [SerializeField] private Vector3 coinSpawnOffset = new Vector3(0, 0.0f, 0);
 
     private SpriteRenderer spriteRenderer;
@@ -85,6 +84,7 @@ public class QuestionBlockHit : MonoBehaviour
 
         Destroy(coin);
         gameManager.IncreaseScore(1);
+
     }
 
     private IEnumerator ReturnToOriginalAndSetStatic()

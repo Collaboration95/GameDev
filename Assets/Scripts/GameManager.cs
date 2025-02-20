@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
     public UnityEvent gameOver;
 
     private int score = 0;
+    override public void Awake()
+    {
+        base.Awake();
+        Debug.Log("GamemManager Awake Called");
+
+    }
 
     void Start()
     {
@@ -26,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void GameRestart()
     {
+        Debug.Log("Game Restart Called");
         // reset score
         score = 0;
         SetScore(score);
@@ -37,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         score += increment;
         SetScore(score);
+        Debug.Log("INcreased Score");
     }
 
     public void SetScore(int score)

@@ -1,10 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
-
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     GameManager gameManager;
+
+
     public AudioSource marioAudio;
     public Transform gameCamera;
     public AudioClip marioDeath;
@@ -21,6 +23,14 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource marioDeathAudio;
 
+    override public void Awake()
+    {
+        base.Awake();
+        Debug.Log("GamemManager Awake Called");
+
+    }
+
+    public Vector3 StartPosition = new Vector3(-5.879927f, -3.325205f, 0.0f);
 
     void Start()
     {
@@ -32,8 +42,17 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
 
         marioAnimator.SetBool("onGround", onGroundState);
+        SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        if (next.name == "World-1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(34.88547f, -3.3499f, 0.0f);
+        }
+    }
     public bool IsGrounded()
     {
         // exposing mario's state to pitchshifter
@@ -60,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     public void GameRestart()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-5.879927f, -3.325205f, 0.0f);
+        marioBody.transform.position = StartPosition;
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
