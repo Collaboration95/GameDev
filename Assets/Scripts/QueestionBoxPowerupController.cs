@@ -42,15 +42,13 @@ public class QuestionBoxPowerupController : MonoBehaviour, IPowerupController
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player" && !hasBeenHit)
+        if (other.gameObject.tag == "Player" && !hasBeenHit && other.contacts[0].normal.y > 0.5f)
         {
             hasBeenHit = true;
 
             BlockAnimator.SetBool("Blinking", false);
             powerupAnimator.SetTrigger("spawned");
 
-
-            // powerupAnimator.SetTrigger("spawned");
         }
     }
     public void Disable()

@@ -45,6 +45,7 @@ public class MagicMushroomPowerup : BasePowerup
     {
         Debug.Log("Something happened ?");
         this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        this.GetComponent<BoxCollider2D>().enabled = true;
         // Collider2D collider = GetComponent<Collider2D>();
 
 

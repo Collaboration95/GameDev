@@ -2150,7 +2150,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: d01a7ff25c4e74ce69a1b9c1ef77b8e8, type: 2}
   exposedPitchParam: MidAirPitchShiftVariable
   groundPitch: 1
-  airPitch: 0.7
+  airPitch: 0.9
   pitchTransitionSpeed: 2
 --- !u!1 &448200294
 GameObject:
@@ -6091,6 +6091,10 @@ PrefabInstance:
     - target: {fileID: 1732389137608325350, guid: 3aa861b2295d2491aa4764e5f5c8d339, type: 3}
       propertyPath: m_Name
       value: QuestionBlockMushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134548721937688237, guid: 3aa861b2295d2491aa4764e5f5c8d339, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7965464209109879639, guid: 3aa861b2295d2491aa4764e5f5c8d339, type: 3}
       propertyPath: m_LocalPosition.x
