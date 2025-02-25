@@ -10,6 +10,8 @@ public class GameOverScript : Singleton<GameOverScript>
 {
     // Start is called before the first frame update
     public GameObject ScoreScreen;
+    public GameObject totalScoreText;
+    public IntVariable gameScore;
     public GameObject gameOverScreen;
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI ScoreOverlay;
@@ -38,6 +40,9 @@ public class GameOverScript : Singleton<GameOverScript>
     public void HideGameOverScreen()
     {
         gameOverScreen.SetActive(false);
+        totalScoreText.GetComponent<TextMeshProUGUI>().text = "TOP- " + gameScore.previousHighestValue.ToString("D6");
+        // show
+        totalScoreText.SetActive(true);
         ScoreScreen.SetActive(true);
     }
 }

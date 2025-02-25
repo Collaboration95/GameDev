@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public IntVariable gameScore;
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
 
-    private int score = 0;
+
     override public void Awake()
     {
         base.Awake();
@@ -26,7 +27,8 @@ public class GameManager : Singleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        scoreChange.Invoke(score);
+        scoreChange.Invoke(gameScore.Value);
+
     }
 
     void Start()
@@ -45,16 +47,16 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Game Restart Called");
         // reset score
-        score = 0;
-        SetScore(score);
+        gameScore.Value = 0;
+        SetScore(gameScore.Value);
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
     }
 
     public void IncreaseScore(int increment)
     {
-        score += increment;
-        SetScore(score);
+        gameScore.ApplyChange(1);
+        SetScore(gameScore.Value);
         // Debug.Log("INcreased Score");
     }
 

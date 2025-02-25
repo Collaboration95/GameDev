@@ -9,8 +9,6 @@ public class BrickPowerupController : MonoBehaviour, IPowerupController
     public BasePowerup powerup; // reference to this question box's powerup
 
     public bool isBreakable = false;
-
-
     private SpriteRenderer spriteRenderer;
     public Animator BlockAnimator;
 

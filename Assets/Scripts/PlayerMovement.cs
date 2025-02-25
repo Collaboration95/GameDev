@@ -4,18 +4,24 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    GameManager gameManager;
+    public GameConstants gameConstants;
+    float deathImpulse;
+    float upSpeed;
+    float maxSpeed;
+    float speed;
+
+
     public AudioSource marioAudio;
     public Transform gameCamera;
     public AudioClip marioDeath;
-    public float deathImpulse = 15;
+
     [System.NonSerialized]
     public bool alive = true;
 
     // global variables
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
-    public float speed = 10;
+
     private Rigidbody2D marioBody;
     public Animator marioAnimator;
 
@@ -31,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
 
@@ -127,8 +137,6 @@ public class PlayerMovement : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
         }
     }
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
     private bool onGroundState = true;
 
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
@@ -160,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 marioAnimator.Play("mario-die");
+
                 marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
                 alive = false;
             }
