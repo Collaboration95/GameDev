@@ -8,7 +8,6 @@ public class JumpOverGoomba : MonoBehaviour
 {
     public Transform enemyLocation;
 
-    GameManager gameManager;
     // public TextMeshProUGUI scoreText;
     private bool onGroundState;
 
@@ -19,11 +18,6 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
-
-    void Start()
-    {
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
-    }
 
     // Update is called once per frame
     void Update()

@@ -2,19 +2,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class ActionManager : Singleton<ActionManager>
+public class ActionManager : MonoBehaviour
 {
     public UnityEvent jump;
     public UnityEvent jumpHold;
     public UnityEvent<int> moveCheck;
 
     private bool CanPrint = false; // Set this flag to false to disable printing
-    override public void Awake()
-    {
-        base.Awake();
-        Debug.Log("ActionManager Awake Called");
+    // override public void Awake()
+    // {
+    //     base.Awake();
+    //     Debug.Log("ActionManager Awake Called");
 
-    }
+    // }
 
     public void OnJumpHoldAction(InputAction.CallbackContext context)
     {

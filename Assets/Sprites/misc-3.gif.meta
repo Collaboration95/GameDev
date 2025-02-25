@@ -924,7 +924,7 @@ TextureImporter:
         width: 40
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -932,6 +932,27 @@ TextureImporter:
       bones: []
       spriteID: 29bbece2255c7411087c5d0855bdca8f
       internalID: 1914358317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mushroom-red
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1193
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b176ad0637f403b810d158a184a860
+      internalID: -11327457
       vertices: []
       indices: 
       edges: []
@@ -974,6 +995,7 @@ TextureImporter:
       misc-3_2: 186944144
       moving_platform_6: 903099312
       mushroom green: 2054515606
+      mushroom-red: -11327457
       nderground-floor: 897419457
       pipe body: 1935833107
       pipe head: -728801810

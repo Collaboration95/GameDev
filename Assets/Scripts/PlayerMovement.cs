@@ -2,11 +2,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : Singleton<PlayerMovement>
+public class PlayerMovement : MonoBehaviour
 {
     GameManager gameManager;
-
-
     public AudioSource marioAudio;
     public Transform gameCamera;
     public AudioClip marioDeath;
@@ -23,10 +21,9 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     public AudioSource marioDeathAudio;
 
-    override public void Awake()
+    public void Awake()
     {
-        base.Awake();
-        Debug.Log("GamemManager Awake Called");
+        GameManager.instance.gameRestart.AddListener(GameRestart);
 
     }
 
@@ -34,15 +31,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
-
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
 
         marioSprite = GetComponent<SpriteRenderer>();
 
         marioAnimator.SetBool("onGround", onGroundState);
-        SceneManager.activeSceneChanged += SetStartingPosition;
+        // SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
     public void SetStartingPosition(Scene current, Scene next)
@@ -67,13 +62,30 @@ public class PlayerMovement : Singleton<PlayerMovement>
     void GameOverScene()
     {
         Time.timeScale = 0.0f;
-        gameManager.GameOver();
+
+        GameManager.instance.GameOver();
         Debug.Log("GameOverScene is being called\n");
     }
 
     void PlayDeathImpulse()
     {
         marioBody.AddForce(Vector2.up * deathImpulse, ForceMode2D.Impulse);
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Update start position for the new scene
+        StartPosition = transform.position;
     }
 
     public void GameRestart()
@@ -89,7 +101,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         alive = true;
 
         // reset camera position
-        gameCamera.position = new Vector3(0, 0, -10);
+        // gameCamera.position = new Vector3(0, 0, -10);
     }
 
     void Update()
@@ -119,7 +131,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public float upSpeed = 10;
     private bool onGroundState = true;
 
-    public GameOverScript GameOverScript;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -137,7 +148,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
             if (Mathf.Abs(marioBody.velocity.y) > 0)
             {
                 Debug.Log("Righteous Mario Vanquishes Goomba");
-                gameManager.IncreaseScore(5);
+
+                GameManager.instance.IncreaseScore(5);
 
                 EnemyMovement temp = other.gameObject.GetComponent<EnemyMovement>();
                 if (temp != null)

@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D enemyBody;
 
-    public Vector3 startPosition = new(-5.879927f, -3.325205f, 0.0f);
+    public Vector3 startPosition = new(2.334109f, -2.911f, 0.11265f);
 
     public Animator goombaAnimator;
 
@@ -30,8 +31,24 @@ public class EnemyMovement : MonoBehaviour
         goombaSprite = GetComponent<SpriteRenderer>();
 
         // get the starting position
-        originalX = transform.position.x;
+        originalX = startPosition.x;
         ComputeVelocity();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Update start position for the new scene
+        startPosition = transform.position;
     }
     void ComputeVelocity()
     {
@@ -40,8 +57,8 @@ public class EnemyMovement : MonoBehaviour
 
     public void GameRestart()
     {
-        transform.localPosition = startPosition;
-        originalX = transform.position.x;
+        transform.position = startPosition;
+        // originalX is already set in Start() and shouldn't change
         moveRight = -1;
         ComputeVelocity();
 

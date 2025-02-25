@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,8 +15,18 @@ public class GameManager : Singleton<GameManager>
     override public void Awake()
     {
         base.Awake();
-        Debug.Log("GamemManager Awake Called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        scoreChange.Invoke(score);
     }
 
     void Start()
@@ -44,7 +55,7 @@ public class GameManager : Singleton<GameManager>
     {
         score += increment;
         SetScore(score);
-        Debug.Log("INcreased Score");
+        // Debug.Log("INcreased Score");
     }
 
     public void SetScore(int score)

@@ -14,6 +14,14 @@ public class GameOverScript : Singleton<GameOverScript>
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI ScoreOverlay;
     private int score;
+
+    override public void Awake()
+    {
+        GameManager.instance.gameStart.AddListener(HideGameOverScreen);
+        GameManager.instance.gameOver.AddListener(DisplayGameOverScreen);
+        GameManager.instance.gameRestart.AddListener(HideGameOverScreen);
+        GameManager.instance.scoreChange.AddListener(SetScore);
+    }
     public void DisplayGameOverScreen()
     {
         gameOverScreen.SetActive(true);

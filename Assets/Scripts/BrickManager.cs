@@ -1,61 +1,56 @@
 using UnityEngine;
-
-// public class BricksManager : MonoBehaviour
-// {
-//     public void gameRestart()
-//     {
-//         for (int i = 0; i < transform.childCount; i++)
-//         {
-//             Transform child = transform.GetChild(i);
-
-//             // Find the "question block" inside this child
-//             Transform questionBlock = child.Find("question block");
-
-
-//             var brickHit = questionBlock.GetComponent<BrickHit>();
-//             if (brickHit != null)
-//             {
-//                 brickHit.gameRestart();
-//             }
-//             else
-//             {
-//                 var questionBlockHit = questionBlock.GetComponent<QuestionBlockHit>();
-//                 if (questionBlockHit != null)
-//                 {
-//                     questionBlockHit.gameRestart();
-//                 }
-//             }
-
-//         }
-
-//     }
-// }
-
-
 public class BricksManager : MonoBehaviour
 {
+
+    public void Awake()
+    {
+        GameManager.instance.gameRestart.AddListener(gameRestart);
+    }
     public void gameRestart()
     {
         for (int i = 0; i < transform.childCount; i++)
-    {    
-        Transform child = transform.GetChild(i);
-
-        // If "question block" is under a "ChildObject" transform
-        Transform questionBlock = child.Find("question block");
-        if (questionBlock != null)
         {
-            questionBlock.GetComponent<QuestionBlockHit>().gameRestart();
-        }
-        else
-        {
+            Transform child = transform.GetChild(i);
 
-        Transform brickBlock = child.Find("BrickBlock");
-        if (brickBlock != null)
+            // If "question block" is under a "ChildObject" transform
+            Transform questionBlock = child.Find("question block");
+            if (questionBlock != null)
             {
-            brickBlock.GetComponent<BrickHit>().gameRestart();
-                
-            }    
+                QuestionBlockHit questionBlockHit = questionBlock.GetComponent<QuestionBlockHit>();
+                if (questionBlockHit != null)
+                {
+                    questionBlockHit.gameRestart();
+                }
+                else
+                {
+                    QuestionBoxPowerupController questionBoxPowerupController = questionBlock.GetComponent<QuestionBoxPowerupController>();
+                    if (questionBoxPowerupController != null)
+                    {
+                        questionBoxPowerupController.gameRestart();
+                    }
+                }
+            }
+            else
+            {
+
+                Transform brickBlock = child.Find("BrickBlock");
+                if (brickBlock != null)
+                {
+                    BrickHit brickHit = brickBlock.GetComponent<BrickHit>();
+                    if (brickHit != null)
+                    {
+                        brickHit.gameRestart();
+                    }
+                    else
+                    {
+                        BrickPowerupController brickPowerupController = brickBlock.GetComponent<BrickPowerupController>();
+                        if (brickPowerupController != null)
+                        {
+                            brickPowerupController.gameRestart();
+                        }
+                    }
+                }
+            }
         }
-    }
     }
 }
